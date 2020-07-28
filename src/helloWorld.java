@@ -1,6 +1,5 @@
 import java.text.NumberFormat;
 import java.util.Currency;
-import java.util.Date;
 import java.util.Scanner;
 
 public class helloWorld {
@@ -17,24 +16,22 @@ public class helloWorld {
 
         System.out.print("Annual Interest Rate: ");
         Double interestRate = scanner.nextDouble();
-        double calculateInterest = (double) ((interestRate / PERCENT) / MONTH_IN_YEARS);
+        double calculateInterest = (double)((interestRate / PERCENT) / MONTH_IN_YEARS);
 
         System.out.print("Period in years: ");
         int periodInYears = scanner.nextInt();
-        int numberOfPayments = periodInYears + MONTH_IN_YEARS;
+        int numberOfPayments = periodInYears * MONTH_IN_YEARS;
 
 
-
-
-        double repaymentValue = principal / (1 + calculateInterest);
-        double repaymentTotalValue = Math.pow(repaymentValue , calculateInterest);
 
         double mortgage = principal * (calculateInterest * Math.pow(1 + calculateInterest, numberOfPayments)) / (Math.pow(1 + calculateInterest, numberOfPayments) -1);
 
+        System.out.println(numberOfPayments);
+        System.out.println(calculateInterest);
 
         Currency mortgageFormatted = NumberFormat.getCurrencyInstance().getCurrency();
         Currency currencyResult = mortgageFormatted;
-        System.out.println("Your repayment is" + mortgage);
+        System.out.println("Your repayment is £" + mortgage);
 
 
     }
