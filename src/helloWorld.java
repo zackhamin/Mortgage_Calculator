@@ -9,20 +9,11 @@ public class helloWorld {
         byte periodInYears = (byte) readNumber("Period in years: ", 5, 45);
 
         double mortgage = calculateMortgage(principal, interestRate, periodInYears);
-        System.out.println("Your mortgage payments are: " + mortgage);
-
-//        for(double i = principal, m = mortgage; i > 0; principal -= mortgage);
-
-//        if (principal > 0) {
-//            while(true){
-//             double v = principal -= mortgage;
-//                System.out.println("Your repayment plan is " + v);
-//            }
-//        }
+        System.out.println("Your monthly payments are: £" + mortgage);
 
         do {
             double v = principal -= mortgage;
-            System.out.println("Your repayment plan is " + v);
+            System.out.println("Your repayment plan is £" + v);
         } while (principal > 0);
 
     }
