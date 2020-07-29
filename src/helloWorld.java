@@ -1,36 +1,43 @@
-import java.beans.beancontext.BeanContextServiceRevokedEvent;
-import java.text.NumberFormat;
-import java.util.Currency;
 import java.util.Scanner;
 
 public class helloWorld {
 
     public static void main(String[] args) {
 
-        int principal = 0;
-        float interestRate = 0;
-        byte periodInYears = 0;
+        int principal = (int) readNumber("Principal ", 1000, 1_000_000);
+        float interestRate = (float) readNumber("Annual Interest Rate: ", 1, 30);
+        byte periodInYears = (byte) readNumber("Period in years: ", 5, 45);
 
+        double mortgage = calculateMortgage(principal, interestRate, periodInYears);
+        System.out.println("Your mortgage payments are: " + mortgage);
 
-        readNumber("Principal ", 1000, 1_000_000);
-        readNumber("Annual Interest Rate: ", 1, 30);
-        readNumber("Period in years: ", 5, 45);
+//        for(double i = principal, m = mortgage; i > 0; principal -= mortgage);
 
-        calculateMortgage(principal, interestRate, periodInYears);
+//        if (principal > 0) {
+//            while(true){
+//             double v = principal -= mortgage;
+//                System.out.println("Your repayment plan is " + v);
+//            }
+//        }
+
+        do {
+            double v = principal -= mortgage;
+            System.out.println("Your repayment plan is " + v);
+        } while (principal > 0);
+
     }
-
-    public static double readNumber(String prompt, double min, double max) {
-        Scanner scanner = new Scanner(System.in);
-        double value;
-        while (true) {
-            System.out.print(prompt);
-            value = scanner.nextFloat();
-            if (value > min && value <= max)
-                break;
-            System.out.println("Please enter a value between " + min + " and " + max);
+        public static double readNumber (String prompt,double min, double max){
+            Scanner scanner = new Scanner(System.in);
+            double value;
+            while (true) {
+                System.out.print(prompt);
+                value = scanner.nextFloat();
+                if (value > min && value <= max)
+                    break;
+                System.out.println("Please enter a value between " + min + " and " + max);
+            }
+            return value;
         }
-        return value;
-    }
 
     public static double calculateMortgage(int principal, float interestRate, byte periodInYears){
         final byte PERCENT = 100;
@@ -41,7 +48,8 @@ public class helloWorld {
         double mortgage = principal * (calculateInterest * Math.pow(1 + calculateInterest,
                 numberOfPayments)) / (Math.pow(1 + calculateInterest, numberOfPayments) -1);
 
-        System.out.println("Your repayment is £" + mortgage);
         return mortgage;
+
     }
+
 }
