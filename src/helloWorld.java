@@ -10,10 +10,11 @@ public class helloWorld {
 
         double mortgage = calculateMortgage(principal, interestRate, periodInYears);
         System.out.println("Your monthly payments are: £" + mortgage);
-
+        System.out.println("Mortgage Payment Schedule");
+        System.out.println("-------------------------");
         do {
             double v = principal -= mortgage;
-            System.out.println("Your repayment plan is £" + v);
+            System.out.println("Your repayment schedule is £" + v);
         } while (principal > 0);
 
     }
